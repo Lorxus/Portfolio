@@ -60,7 +60,7 @@ def main():
         
         if maxdotprodthisrun > 0.41:
             i = i-1
-            print(i, runcount, maxdotprodthisrun)
+            #print(i, runcount, maxdotprodthisrun)
             continue
 
         if maxdotprodthisrun < mostorthogdp:
