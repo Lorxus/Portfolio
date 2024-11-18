@@ -33,6 +33,8 @@ def main():
     numpoints = int(input())
     print('How many times shall we go looking?')
     numruns = int(input())
+    # print('What should our bounds of immediate rejection and retry be, in terms of cosine similarity? (0.162 is the theoretical min for 9 points; realistically try 0.7 or so or this will take a long time...')
+    # min_bad_cossim = min(float(input), 1)
     print('\n\n')
 
     bestglomepoints = []
@@ -57,8 +59,9 @@ def main():
             dotprod = np.dot(point1, point2.T)
             if dotprod > maxdotprodthisrun and dotprod != 1:
                 maxdotprodthisrun = dotprod
-        
-        if maxdotprodthisrun > 0.41:
+
+        # if maxdotprodthisrun > min_bad_cossim:
+        if maxdotprodthisrun > 0.8:  # theoretical min for 9 points is ~0.162 at degree separation of ~80.68*, but a random-esque search like this one rarely finds anything 
             i = i-1
             #print(i, runcount, maxdotprodthisrun)
             continue
