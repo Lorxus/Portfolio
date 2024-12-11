@@ -11,7 +11,7 @@ A repository for things fit for public consumption which I want to share with ot
 # About Me: Mathematical Approaches to Computational Problem-Solving
 With a math degree from Princeton followed by a PhD in geometric group theory including a background in mathematical logic, I'm passionate about bridging theoretical insights with practical software solutions. My work focuses on transforming complex mathematical concepts into robust, innovative computational tools.
 
-My resume is current as of 2024-11-04; as is the fact that I am currently looking for work in data science, software engineering, quantitative finance, and related fields.
+My resume is current as of 2024-12-11, as is the fact that I am currently looking for work in data science, quantitative finance, and related fields.
 
 ## Areas of Expertise
 - Algorithmic Reasoning
