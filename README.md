@@ -3,8 +3,7 @@ A repository for things fit for public consumption which I want to share with ot
 
 # What Should I Check Out First?
 - Algorithms and math: [Advent of Code](https://github.com/Lorxus/Portfolio/tree/main/Puzzles%20and%20Practice/AoC-2024), [Project Euler](https://github.com/Lorxus/Project-Euler)
-- Numpy/MPL: [Tontine code](https://github.com/Lorxus/Tontine/blob/main/tontine-data-science.py), [clusterer-comparator code](https://github.com/Lorxus/SERI-MATS-Summer-2024/blob/main/main.py) 
-- Stats and data manipulation/analysis: Tontine code, clusterer-comparator code
+- Numpy/MPL; stats and data manipulation/analysis: [Tontine code](https://github.com/Lorxus/Tontine/blob/main/tontine-data-science.py), [clusterer-comparator code](https://github.com/Lorxus/SERI-MATS-Summer-2024/blob/main/main.py) 
 - ML stuff/pytorch: [digit classifier](https://github.com/Lorxus/SERI-MATS-Summer-2023/tree/main)
 - Maintaining/bugfixing others' code: clusterer-comparator code (h/t https://github.com/DLorell)
 
