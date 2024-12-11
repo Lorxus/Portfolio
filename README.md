@@ -2,10 +2,10 @@
 A repository for things fit for public consumption which I want to share with others. If you want to see the kind of code I can write, this is a good place to start! Here, I mostly showcase projects that apply advanced mathematical techniques to computational challenges, as well as a few neat projects I made during a research program or sprint, or just out of personal interest - even though that personal interest frequently impinges on the deeply mathematical. From graph algorithms and data analysis to formal reasoning tools, these projects demonstrate some practical applications of mathematical thinking I've found valuable in software development.
 
 ## Project Themes
-- Algorithmic Visualization
 - Data Processing and Analysis
 - Mathematical Modeling
 - Computational Problem Solving
+- Algorithmic Visualization
 - Software Engineering Fundamentals
 
 # About Me: Mathematical Approaches to Computational Problem-Solving
