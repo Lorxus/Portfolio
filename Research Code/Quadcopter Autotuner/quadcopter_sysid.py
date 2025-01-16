@@ -1,5 +1,6 @@
 import numpy as np
 import control as ct
+import json
 
 def k_beta(d: dict, curr_motor: float) -> float:
 	alpha = d['k_alpha']
@@ -45,18 +46,19 @@ def makerow_A_omega(d: dict, motors: list[float], idx: int) -> list[float]:
 
 if __name__ == '__main__':
 	# read in file of coefficients
-	filename = 'regression_coefficients.csv'
+	filename = 'regression_coefficients.json'
 	qc_raw = open(filename, 'r')
-	qc_log = qc_raw.read()
+	qc_log = json.load(qc_raw)
 	qc_raw.close()
 
 	motors = [float, float, float, float]
 
 	# make dict of params
-	qc_params = {}
-	names = ['rho_yaw', 'rho_pitch', 'rho_roll', 'prop_drag_lin', 'prop_drag_quad', 'k_inertial', 'thrust_lin', 'thrust_quad', 'disp_front', 'disp_back', 'disp_left', 'disp_right', 'k_alpha', 'k_omega', 'k_omegasq']
-	for idx, n_ in enumerate(names):
-		qc_params[n_] = float(qc_log[idx])
+	qc_params = json.loads(qc_log)
+	# qc_params = {}
+	# names = ['rho_yaw', 'rho_pitch', 'rho_roll', 'prop_drag_lin', 'prop_drag_quad', 'k_inertial', 'thrust_lin', 'thrust_quad', 'disp_front', 'disp_back', 'disp_left', 'disp_right', 'k_alpha', 'k_omega', 'k_omegasq']
+	# for idx, n_ in enumerate(names):
+	# 	qc_params[n_] = float(qc_log[idx])
 
 	# run each 'makerow' function and compile the rows into matrix A (linear dynamics)
 	qc_state_matrix_A = np.array([makerow_A_yaw(qc_params, motors), makerow_A_pitch(qc_params, motors),
@@ -71,10 +73,10 @@ if __name__ == '__main__':
 	                     [0, 0, qc_params['k_alpha'], 0], [0, 0, 0, qc_params['k_alpha']]])
 
 	# directly assemble matrix C (affine term)
-	qc_state_matrix_C = np.array([qc_params['prop_drag_quad'] + (qc_params['k_alpha'] * qc_params['k_inertial']))/qc_params['k_omega^2']) * (- motors[0]^2 + motors[1]^2 + motors[2]^2 - motors[3]^2),
-	                              qc_params['thrust_quad'] * (qc_params['disp_back'] * (motors[2]^2 + motors[3]^2 ) - qc_params['disp_front'] * (motors[0]^2 + motors[1]^2)),
-	                              qc_params['thrust_quad'] * (qc_params['disp_right'] * (motors[1]^2 + motors[3]^2 ) - qc_params['disp_left'] * (motors[0]^2 + motors[2]^2)),
-	                              qc_params['k_alpha'] * motors[0]^2 / qc_params['k_omegasq'],
-	                              qc_params['k_alpha'] * motors[1]^2 / qc_params['k_omegasq'],
-	                              qc_params['k_alpha'] * motors[2]^2 / qc_params['k_omegasq'],
-	                              qc_params['k_alpha'] * motors[3]^2 / qc_params['k_omegasq']])
+	qc_state_matrix_C = np.array([qc_params['prop_drag_quad'] + (qc_params['k_alpha'] * qc_params['k_inertial'])/qc_params['k_omega**2'] * (- motors[0]**2 + motors[1]**2 + motors[2]**2 - motors[3]**2),
+	                              qc_params['thrust_quad'] * (qc_params['disp_back'] * (motors[2]**2 + motors[3]**2 ) - qc_params['disp_front'] * (motors[0]**2 + motors[1]**2)),
+	                              qc_params['thrust_quad'] * (qc_params['disp_right'] * (motors[1]**2 + motors[3]**2 ) - qc_params['disp_left'] * (motors[0]**2 + motors[2]**2)),
+	                              qc_params['k_alpha'] * motors[0]**2 / qc_params['k_omegasq'],
+	                              qc_params['k_alpha'] * motors[1]**2 / qc_params['k_omegasq'],
+	                              qc_params['k_alpha'] * motors[2]**2 / qc_params['k_omegasq'],
+	                              qc_params['k_alpha'] * motors[3]**2 / qc_params['k_omegasq']])
